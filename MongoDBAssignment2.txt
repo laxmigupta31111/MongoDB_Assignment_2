@@ -1,0 +1,376 @@
+use "Library_DB"
+MongoshInvalidInputError: [COMMON-10001] Invalid database name: "Library_DB"
+use "Library_DB";
+MongoshInvalidInputError: [COMMON-10001] Invalid database name: "Library_DB"
+use Library_DB
+switched to db Library_DB
+db.createCollection("books")
+{ ok: 1 }
+db.books.insertMany([])
+MongoInvalidArgumentError: Invalid BulkOperation, Batch cannot be empty
+db.books.insertMany([{title:"C", author:"Tom", genre:"A", price:2369, availableCopies:603},{title:"C++",author:"Jerry", genre:"B", price:48656, availableCopies:156}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a16645defc72c646798059e'),
+    '1': ObjectId('6a16645defc72c646798059f')
+  }
+}
+db.books.find()
+{
+  _id: ObjectId('6a16645defc72c646798059e'),
+  title: 'C',
+  author: 'Tom',
+  genre: 'A',
+  price: 2369,
+  availableCopies: 603
+}
+{
+  _id: ObjectId('6a16645defc72c646798059f'),
+  title: 'C++',
+  author: 'Jerry',
+  genre: 'B',
+  price: 48656,
+  availableCopies: 156
+}
+db.books.find({price: {$gt:300, $lt}})
+ReferenceError: $lt is not defined
+db.books.find({price: {$gt:300, $lte}})
+ReferenceError: $lte is not defined
+db.books.find({price: {$gt:300, $lte:800}})
+db.books.find({genre:"B"})
+{
+  _id: ObjectId('6a16645defc72c646798059f'),
+  title: 'C++',
+  author: 'Jerry',
+  genre: 'B',
+  price: 48656,
+  availableCopies: 156
+}
+db.books.updateMany({title:"C"},{$set:{price:500}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.books.find()
+{
+  _id: ObjectId('6a16645defc72c646798059e'),
+  title: 'C',
+  author: 'Tom',
+  genre: 'A',
+  price: 500,
+  availableCopies: 603
+}
+{
+  _id: ObjectId('6a16645defc72c646798059f'),
+  title: 'C++',
+  author: 'Jerry',
+  genre: 'B',
+  price: 48656,
+  availableCopies: 156
+}
+db.books.deleteOne({title:C++})
+ReferenceError: C is not defined
+db.books.deleteOne({title:"C++"})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.books.deleteMany({availablecopies:{$lt:0}})
+{
+  acknowledged: true,
+  deletedCount: 0
+}
+db.books.find();
+
+
+
+use Hospital_DB
+switched to db Hospital_DB
+db.createCollection("patients")
+{ ok: 1 }
+db.books.insertMany([{name:"omika", age:58, disease:"XYZ", doctorAssigned:"PQR",city:"Mumbai"},
+{name:"Laksh", age:98,disease:"qaz",doctorAssigned:"plm",city:"Delhi"},
+{name:"Disha", age:68, disease:"edc", doctorAssigned:"ihb",city:"gujrat"},
+{name:"Riya", age:53, disease:"rfv", doctorAssigned:"tyu",city:"banaras"},
+{name:"Meena", age:18, disease:"tgb", doctorAssigned:"rfv",city:"Mumbai"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a166b3eefc72c64679805a0'),
+    '1': ObjectId('6a166b3eefc72c64679805a1'),
+    '2': ObjectId('6a166b3eefc72c64679805a2'),
+    '3': ObjectId('6a166b3eefc72c64679805a3'),
+    '4': ObjectId('6a166b3eefc72c64679805a4')
+  }
+}
+db.patients.find()
+db.patients.find()
+db.patients.insertMany([{name:"omika", age:58, disease:"XYZ", doctorAssigned:"PQR",city:"Mumbai"},
+{name:"Laksh", age:98,disease:"qaz",doctorAssigned:"plm",city:"Delhi"},
+{name:"Disha", age:68, disease:"edc", doctorAssigned:"ihb",city:"gujrat"},
+{name:"Riya", age:53, disease:"rfv", doctorAssigned:"tyu",city:"banaras"},
+{name:"Meena", age:18, disease:"tgb", doctorAssigned:"rfv",city:"Mumbai"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a166ba1efc72c64679805a5'),
+    '1': ObjectId('6a166ba1efc72c64679805a6'),
+    '2': ObjectId('6a166ba1efc72c64679805a7'),
+    '3': ObjectId('6a166ba1efc72c64679805a8'),
+    '4': ObjectId('6a166ba1efc72c64679805a9')
+  }
+}
+db.patients.find()
+
+
+db.patients.find({age:{$gt:20, $lt:50}})
+db.patients.find()
+{
+  _id: ObjectId('6a166ba1efc72c64679805a5'),
+  name: 'omika',
+  age: 58,
+  disease: 'XYZ',
+  doctorAssigned: 'PQR',
+  city: 'Mumbai'
+}
+{
+  _id: ObjectId('6a166ba1efc72c64679805a6'),
+  name: 'Laksh',
+  age: 98,
+  disease: 'qaz',
+  doctorAssigned: 'plm',
+  city: 'Delhi'
+}
+{
+  _id: ObjectId('6a166ba1efc72c64679805a7'),
+  name: 'Disha',
+  age: 68,
+  disease: 'edc',
+  doctorAssigned: 'ihb',
+  city: 'gujrat'
+}
+{
+  _id: ObjectId('6a166ba1efc72c64679805a8'),
+  name: 'Riya',
+  age: 53,
+  disease: 'rfv',
+  doctorAssigned: 'tyu',
+  city: 'banaras'
+}
+{
+  _id: ObjectId('6a166ba1efc72c64679805a9'),
+  name: 'Meena',
+  age: 18,
+  disease: 'tgb',
+  doctorAssigned: 'rfv',
+  city: 'Mumbai'
+}
+db.patients.find({age:{$gt:20, $lt:50}})
+db.patients.find(disease:"rfv")
+SyntaxError: Unexpected token, expected "," (1:24)
+
+> 1 | db.patients.find(disease:"rfv")
+    |                         ^
+db.patients.find({disease:"rfv"})
+{
+  _id: ObjectId('6a166ba1efc72c64679805a8'),
+  name: 'Riya',
+  age: 53,
+  disease: 'rfv',
+  doctorAssigned: 'tyu',
+  city: 'banaras'
+}
+db.patients.updateOne({city:"Mumbai"},{$set:{doctorAssigned:"qazwsxedcrfv"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.patients.deleteMany(document)
+ReferenceError: document is not defined
+db.patients.deleteMany(age)
+ReferenceError: age is not defined
+db.patients.deleteOne()
+MongoshInvalidInputError: [COMMON-10001] Missing required argument at position 0 (Collection.deleteOne)
+db.patients.deleteOne(name:"Riya")
+SyntaxError: Unexpected token, expected "," (1:26)
+
+> 1 | db.patients.deleteOne(name:"Riya")
+    |                           ^
+db.patients.deleteMany({city:"Mumbai"})
+{
+  acknowledged: true,
+  deletedCount: 2
+}
+db.patients.find()
+
+db.patients.findOne()
+{
+  _id: ObjectId('6a166ba1efc72c64679805a6'),
+  name: 'Laksh',
+  age: 98,
+  disease: 'qaz',
+  doctorAssigned: 'plm',
+  city: 'Delhi'
+}
+db.patients.find({},{name:2,age:1,_id:-1})
+{
+  _id: ObjectId('6a166ba1efc72c64679805a6'),
+  name: 'Laksh',
+  age: 98
+}
+{
+  _id: ObjectId('6a166ba1efc72c64679805a7'),
+  name: 'Disha',
+  age: 68
+}
+{
+  _id: ObjectId('6a166ba1efc72c64679805a8'),
+  name: 'Riya',
+  age: 53
+}
+db.patients.find().sort({age:})
+SyntaxError: Unexpected token (1:29)
+
+> 1 | db.patients.find().sort({age:})
+    |                              ^
+db.patients.find().sort({age:})
+SyntaxError: Unexpected token (1:29)
+
+> 1 | db.patients.find().sort({age:})
+    |                              ^
+db.patients.find().sort({age:1})
+{
+  _id: ObjectId('6a166ba1efc72c64679805a8'),
+  name: 'Riya',
+  age: 53,
+  disease: 'rfv',
+  doctorAssigned: 'tyu',
+  city: 'banaras'
+}
+{
+  _id: ObjectId('6a166ba1efc72c64679805a7'),
+  name: 'Disha',
+  age: 68,
+  disease: 'edc',
+  doctorAssigned: 'ihb',
+  city: 'gujrat'
+}
+{
+  _id: ObjectId('6a166ba1efc72c64679805a6'),
+  name: 'Laksh',
+  age: 98,
+  disease: 'qaz',
+  doctorAssigned: 'plm',
+  city: 'Delhi'
+}
+db.patients.find().sort({age:-1})
+
+db.patients.find().limit(2)
+{
+  _id: ObjectId('6a166ba1efc72c64679805a6'),
+  name: 'Laksh',
+  age: 98,
+  disease: 'qaz',
+  doctorAssigned: 'plm',
+  city: 'Delhi'
+}
+{
+  _id: ObjectId('6a166ba1efc72c64679805a7'),
+  name: 'Disha',
+  age: 68,
+  disease: 'edc',
+  doctorAssigned: 'ihb',
+  city: 'gujrat'
+}
+db.p
+Hospital_DB.p
+db.patients.find().skip(2)
+{
+  _id: ObjectId('6a166ba1efc72c64679805a8'),
+  name: 'Riya',
+  age: 53,
+  disease: 'rfv',
+  doctorAssigned: 'tyu',
+  city: 'banaras'
+}
+db.patients.find({age:{$gt:40}})
+{
+  _id: ObjectId('6a166ba1efc72c64679805a6'),
+  name: 'Laksh',
+  age: 98,
+  disease: 'qaz',
+  doctorAssigned: 'plm',
+  city: 'Delhi'
+}
+{
+  _id: ObjectId('6a166ba1efc72c64679805a7'),
+  name: 'Disha',
+  age: 68,
+  disease: 'edc',
+  doctorAssigned: 'ihb',
+  city: 'gujrat'
+}
+{
+  _id: ObjectId('6a166ba1efc72c64679805a8'),
+  name: 'Riya',
+  age: 53,
+  disease: 'rfv',
+  doctorAssigned: 'tyu',
+  city: 'banaras'
+}
+db.patients.find({price:{$lt:500}})
+db.patients.find({$and: [disease:"edc",{age:{$gt:45}}]})
+SyntaxError: Unexpected token, expected "," (1:32)
+
+> 1 | db.patients.find({$and: [disease:"edc",{age:{$gt:45}}]})
+    |                                 ^
+db.patients.find({$and: [disease:"edc"},{age:{$gt:45}}]})
+SyntaxError: Unexpected token, expected "," (1:32)
+
+> 1 | db.patients.find({$and: [disease:"edc"},{age:{$gt:45}}]})
+    |                                 ^
+db.patients.find({$and: [{disease:"edc"},{age:{$gt:45}}]})
+{
+  _id: ObjectId('6a166ba1efc72c64679805a7'),
+  name: 'Disha',
+  age: 68,
+  disease: 'edc',
+  doctorAssigned: 'ihb',
+  city: 'gujrat'
+}
+db.patients.find({$or: [{disease:"edc"},{age:{$gt:45}}]})
+{
+  _id: ObjectId('6a166ba1efc72c64679805a6'),
+  name: 'Laksh',
+  age: 98,
+  disease: 'qaz',
+  doctorAssigned: 'plm',
+  city: 'Delhi'
+}
+{
+  _id: ObjectId('6a166ba1efc72c64679805a7'),
+  name: 'Disha',
+  age: 68,
+  disease: 'edc',
+  doctorAssigned: 'ihb',
+  city: 'gujrat'
+}
+{
+  _id: ObjectId('6a166ba1efc72c64679805a8'),
+  name: 'Riya',
+  age: 53,
+  disease: 'rfv',
+  doctorAssigned: 'tyu',
+  city: 'banaras'
+}
+Hospital_DB
+Selection deleted
+
+
